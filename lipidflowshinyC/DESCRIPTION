@@ -1,0 +1,34 @@
+Package: lipidflowshiny
+Title: Web Interface for LipidFlow Lipidomics Workflows
+Version: 0.0.1
+Authors@R: person(given = "Yijiang", family = "TODO", email = "TODO@ntu.edu.sg", role = c("aut", "cre"))
+Description: A Shiny web interface for the lipidflow ecosystem. Provides
+    browser-based access to untargeted lipidomics peak picking, lipid
+    annotation, and internal-standard-based absolute quantification.
+    The quantification module wraps
+    lipidflow::get_lipid_absolute_quantification(). Peak picking and
+    lipid annotation modules are placeholders pending development -
+    see README for the planned build order.
+License: GPL-2 | file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    shiny (>= 1.8.0),
+    bslib (>= 0.5.0),
+    DT,
+    readxl,
+    readr,
+    openxlsx,
+    callr,
+    zip,
+    shinyjs,
+    stats,
+    utils
+Suggests:
+    lipidflow,
+    massprocesser
+Remotes:
+    jaspershen/lipidflow,
+    tidymass/massprocesser

@@ -1,0 +1,13 @@
+# NOTE: hand-written, not roxygen-generated - this sandbox has no R
+# installation to run devtools::document(). Once you have R + roxygen2
+# locally, delete this file, add roxygen2 @export tags (a few are already
+# stubbed as comments in R/*.R), and run devtools::document() to regenerate
+# it properly. Until then, this is enough to load and run the app.
+
+export(run_lipidflow_shiny)
+
+import(shiny)
+importFrom(bslib, page_navbar, nav_panel, nav_spacer, nav_menu, bs_theme, font_google, card, card_header, card_body, layout_columns, layout_sidebar, sidebar, value_box)
+importFrom(DT, DTOutput, renderDT, datatable)
+importFrom(stats, setNames)
+importFrom(utils, read.csv)
