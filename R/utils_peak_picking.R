@@ -1,4 +1,4 @@
-# Helper functions for peak_picking.R.
+# Helper functions for mod_peak_picking.R.
 #
 # Deliberately kept separate from utils_quant.R even though there's some
 # overlap with .lfs_validate_path_structure() (both check POS/NEG + mzXML
@@ -48,6 +48,42 @@
   rows <- check_mode(rows, "POS")
   rows <- check_mode(rows, "NEG")
   rows
+}
+
+# ---------------------------------------------------------------------------
+# Infer a sample "group" from an original filename, e.g. "D25_1.mzXML" -> "D25",
+# "M19_2.mzXML" -> "M19" - strips the file extension then a trailing
+# "_<number>" or "-<number>" (the replicate index). Falls back to the full
+# stem if no such pattern is found (each file becomes its own group of one).
+# This only exists because the new upload-based flow has no folder structure
+# to read a group from (a browser file picker flattens that) - so the group
+# has to come from *somewhere*, and the filename convention already used in
+# lipidflow's own demo data (D25_1, D25_2, M19_1, M19_2) is the least-new-
+# concept way to get it. Real user files that don't follow this pattern will
+# each land in their own single-sample group - noted in the UI.
+# ---------------------------------------------------------------------------
+.lfs_infer_group <- function(filename) {
+  stem <- tools::file_path_sans_ext(filename)
+  group <- sub("[_-]?[0-9]+$", "", stem)
+  if (!nzchar(group)) stem else group
+}
+
+# ---------------------------------------------------------------------------
+# Given a shiny fileInput() data.frame (columns: name, datapath, ...) for one
+# polarity, copy each uploaded file into <root>/<mode>/<inferred group>/<original name>
+# - the exact layout massprocesser::process_data() expects. Returns the
+# inferred group -> file count mapping for display.
+# ---------------------------------------------------------------------------
+.lfs_organize_uploads <- function(files_df, root, mode) {
+  groups <- character(nrow(files_df))
+  for (i in seq_len(nrow(files_df))) {
+    grp <- .lfs_infer_group(files_df$name[i])
+    groups[i] <- grp
+    dest_dir <- file.path(root, mode, grp)
+    dir.create(dest_dir, recursive = TRUE, showWarnings = FALSE)
+    file.copy(files_df$datapath[i], file.path(dest_dir, files_df$name[i]), overwrite = TRUE)
+  }
+  table(groups)
 }
 
 # ---------------------------------------------------------------------------

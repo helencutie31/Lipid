@@ -1,12 +1,4 @@
 # Home page module.
-#
-# Purely presentational except for the "Open quantification" button, which
-# needs to switch the *parent* navbar's selected tab - that's why
-# mod_home_server() takes parent_session as an argument (see app_server.R).
-
-# --- small inline line-icons, grounded in what each stage actually looks at:
-# a chromatogram trace, a tagged fragment ion, a calibration ladder. Kept as
-# plain stroke SVGs (currentColor) so they inherit each card's text color.
 
 .lfs_icon_peak_picking <- function() {
   shiny::HTML('
@@ -43,9 +35,9 @@
     </svg>')
 }
 
-mod_home_ui <- function(id) {
+home_ui <- function(id) {
   ns <- shiny::NS(id)
-
+  
   status_card <- function(icon, title, tag_label, tag_class, description, button = NULL) {
     shiny::div(
       class = "lfs-card",
@@ -57,19 +49,28 @@ mod_home_ui <- function(id) {
       button
     )
   }
-
+  
   shiny::div(
     class = "lfs-home",
-
+    
+    # Banner Hero mới màu Xanh Navy
     shiny::div(
-      class = "lfs-hero",
-      shiny::h1("LipidFlow"),
-      shiny::p(class = "lfs-hero-sub",
-        "A browser-based workflow for untargeted lipidomics: from raw LC-MS ",
-        "files to peak-picked features, class/species annotation, and ",
-        "internal-standard-based absolute quantification.")
+      style = "background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%); color: white; padding: 40px 50px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);",
+      shiny::div(
+        style = "max-width: 70%;",
+        shiny::h1(style = "font-weight: 800; margin-bottom: 15px; font-size: 3rem;", "LipidFlow"),
+        shiny::h4(style = "margin-bottom: 20px; font-weight: 400; opacity: 0.9;", "Browser-based workflow for untargeted lipidomics"),
+        shiny::p(style = "line-height: 1.6; opacity: 0.8; margin-bottom: 30px; font-size: 1.1rem;",
+                 "LipidFlow performs peak picking, lipid annotation, and internal-standard-based absolute quantification directly from raw LC-MS files..."),
+        shiny::tags$a(href = "#", style = "background: #D34817; color: white; padding: 12px 25px; border-radius: 8px; font-weight: bold; text-decoration: none; margin-right: 15px;", shiny::icon("play-circle"), " Get Started"),
+        shiny::tags$a(href = "#", style = "border: 1px solid rgba(255,255,255,0.5); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none;", shiny::icon("book"), " Help Documents")
+      ),
+      shiny::div(
+        style = "text-align: right;",
+        shiny::tags$img(src = "apple-touch-icon-76x76.png", style = "width: 150px; filter: drop-shadow(0px 10px 10px rgba(0,0,0,0.3));")
+      )
     ),
-
+    
     shiny::div(
       class = "lfs-step-row",
       status_card(
@@ -86,7 +87,7 @@ mod_home_ui <- function(id) {
         shiny::actionButton(ns("go_quant"), "Open quantification \u2192", class = "btn lfs-btn-primary")
       )
     ),
-
+    
     shiny::div(
       class = "lfs-note",
       shiny::h4("Before you start"),
@@ -96,7 +97,7 @@ mod_home_ui <- function(id) {
         shiny::tags$li("Small config files (internal standard table, lipid annotation table) can be uploaded from your browser on the Quantification tab.")
       )
     ),
-
+    
     shiny::div(
       class = "lfs-footer",
       shiny::p(
@@ -108,10 +109,11 @@ mod_home_ui <- function(id) {
   )
 }
 
-mod_home_server <- function(id, parent_session, parent_nav_id) {
+home_server <- function(id, parent_session, parent_nav_id) {
   shiny::moduleServer(id, function(input, output, session) {
     shiny::observeEvent(input$go_quant, {
       bslib::nav_select(id = parent_nav_id, selected = "Quantification", session = parent_session)
     })
   })
 }
+

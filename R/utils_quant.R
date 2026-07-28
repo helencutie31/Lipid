@@ -1,4 +1,4 @@
-# Helper functions used by quantification.R.
+# Helper functions used by mod_quantification.R.
 #
 # These are deliberately NOT exported - they're internal plumbing. Kept in
 # their own file so the module file itself stays readable.

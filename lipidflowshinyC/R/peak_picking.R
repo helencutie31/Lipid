@@ -6,7 +6,7 @@
 # already uses - confirmed against massprocesser's actual vignette, not
 # assumed - so the two tabs can point at the same data folder.
 
-mod_peak_picking_ui <- function(id) {
+peak_picking_ui <- function(id) {
   ns <- shiny::NS(id)
 
   bslib::layout_sidebar(
@@ -95,7 +95,7 @@ mod_peak_picking_ui <- function(id) {
   )
 }
 
-mod_peak_picking_server <- function(id, shared_data_path) {
+peak_picking_server <- function(id, shared_data_path) {
   shiny::moduleServer(id, function(input, output, session) {
     ns <- session$ns
 

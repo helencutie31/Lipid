@@ -5,7 +5,7 @@
 # for the reasoning behind the design choices below (server-path input for
 # raw data, adaptive class-column detection, callr background execution).
 
-mod_quantification_ui <- function(id) {
+quantification_ui <- function(id) {
   ns <- shiny::NS(id)
 
   bslib::layout_sidebar(
@@ -86,7 +86,7 @@ mod_quantification_ui <- function(id) {
   )
 }
 
-mod_quantification_server <- function(id, shared_data_path) {
+quantification_server <- function(id, shared_data_path) {
   shiny::moduleServer(id, function(input, output, session) {
     ns <- session$ns
 

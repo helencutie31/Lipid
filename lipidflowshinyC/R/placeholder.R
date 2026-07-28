@@ -4,7 +4,7 @@
 # implementations - see README.md for the suggested build order and where
 # each future module would plug into app_ui.R / app_server.R.
 
-mod_placeholder_ui <- function(id, title, planned_approach) {
+placeholder_ui <- function(id, title, planned_approach) {
   ns <- shiny::NS(id)
   shiny::div(
     class = "lfs-placeholder",
@@ -13,9 +13,18 @@ mod_placeholder_ui <- function(id, title, planned_approach) {
     shiny::p(class = "lfs-placeholder-text", planned_approach),
     shiny::p(shiny::tags$em("This tab is a stub - no inputs are wired up yet."))
   )
+  
+}
+placeholder_ui <- function(id, title, description) {
+  ns <- shiny::NS(id)
+  shiny::div(
+    style = "padding: 20px;",
+    shiny::h3(title),
+    shiny::p(description)
+  )
 }
 
-mod_placeholder_server <- function(id) {
+placeholder_server <- function(id) {
   shiny::moduleServer(id, function(input, output, session) {
     # nothing to do yet
   })
