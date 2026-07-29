@@ -33,20 +33,20 @@ app_ui <- function() {
       shinyjs::useShinyjs()
     ),
 
-    bslib::nav_panel("Home", mod_home_ui("home")),
+    bslib::nav_panel("Home", home_ui("home")),
 
-    bslib::nav_panel("Peak Picking", mod_peak_picking_ui("peak_picking")),
+    bslib::nav_panel("Peak Picking", peak_picking_ui("peak_picking")),
 
     bslib::nav_panel(
       "Lipid Annotation",
-      mod_placeholder_ui(
+      placeholder_ui(
         "annotation", "Lipid Annotation",
         paste(
           "Decided approach: MS2 spectral matching via metid against",
           "MS-DIAL's public lipid MS/MS libraries (81 classes / ~550k spectra",
-          "positive mode, 94 classes / ~790k spectra negative mode), consuming",
+          "positive e, 94 classes / ~790k spectra negative e), consuming",
           "the mass_dataset object Peak Picking produces directly - no object-",
-          "model conversion needed since metid and massprocesser share an",
+          "el conversion needed since metid and massprocesser share an",
           "author/ecosystem. Two open items before this is built: (1) features",
           "without triggered MS2 get no annotation this way, so a lightweight",
           "MS1-only fallback is probably still worth adding for full feature",
@@ -56,7 +56,7 @@ app_ui <- function() {
       )
     ),
 
-    bslib::nav_panel("Quantification", mod_quantification_ui("quant")),
+    bslib::nav_panel("Quantification", quantification_ui("quant")),
 
     bslib::nav_spacer(),
     bslib::nav_item(
