@@ -1,0 +1,807 @@
+/* LipidFlow Shiny - custom styling
+   Tokens: bg #F5F6F7 / fg #16202A / primary teal #2B6E63 /
+   secondary ochre #C97A2B / muted #9AA5AC / border #D8DCDE
+   See R/app_ui.R for the rationale. */
+
+/* @import must precede every other rule (comments excepted) or the browser
+   ignores it - 'Plus Jakarta Sans' is the app-wide display/body typeface
+   (softer, warmer than Inter - chosen to match the Warm Golden/Emerald
+   luxury palette below). */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif !important;
+  background-color: #FFFDFB !important;
+  color: #1E293B !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+:root {
+  --lfs-bg: #F5F6F7;
+  --lfs-ink: #16202A;
+  --lfs-teal: #2B6E63;
+  --lfs-ochre: #C97A2B;
+  --lfs-muted: #9AA5AC;
+  --lfs-border: #D8DCDE;
+  --lfs-fail: #B84C3C;
+
+  /* Warm Peach & Cream refresh - light cream navbar/hero, one unifying
+     accent for brand text/active tabs/buttons, chosen to sit quietly behind
+     the orange (#D3481A) LipidFlow logo mark rather than compete with it
+     (unlike the darker palettes used in earlier passes). Accent is now
+     "Warm Coral Rose" (#D85A48) - a softened mix of the cream background's
+     pink undertone and the logo's orange-red, toned down from the earlier,
+     more saturated #C23B22 pass. */
+  --lfs-navbar-bg: #FFF8F5;
+  --lfs-hero-from: #FFF0E6;
+  --lfs-hero-to: #FDE0D2;
+  --lfs-accent: #D85A48;
+  --lfs-accent-dark: #A64B3C;
+  --lfs-accent-hover: #C24A39;
+  --lfs-orange: #D3481A;
+  --lfs-blue: #3498DB;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lfs-teal);
+  outline-offset: 2px;
+}
+
+/* ---------- Home ---------- */
+
+.lfs-step-row {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 2rem 0;
+}
+
+.lfs-card {
+  background: #FFFFFF;
+  border: 1px solid var(--lfs-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.4rem;
+  flex: 1 1 260px;
+  min-width: 240px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lfs-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(22, 32, 42, 0.08);
+  }
+}
+.lfs-card-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--lfs-teal);
+  margin-bottom: 0.6rem;
+}
+.lfs-card-icon svg { width: 100%; height: 100%; }
+.lfs-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.lfs-card-title-row h3 { font-size: 1.1rem; margin: 0; }
+.lfs-card-desc {
+  color: var(--lfs-ink);
+  opacity: 0.75;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0.5rem 0 0.9rem 0;
+}
+
+.lfs-note {
+  background: #FFFFFF;
+  border: 1px solid var(--lfs-border);
+  border-left: 3px solid var(--lfs-teal);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  max-width: 46rem;
+  margin-bottom: 1.5rem;
+}
+.lfs-note h4 { font-size: 0.95rem; margin: 0 0 0.5rem 0; }
+.lfs-note ul { margin: 0; padding-left: 1.1rem; }
+.lfs-note li { font-size: 0.9rem; opacity: 0.85; margin-bottom: 0.35rem; }
+
+.lfs-footer {
+  font-size: 0.82rem;
+  opacity: 0.65;
+  max-width: 46rem;
+  padding-bottom: 2rem;
+}
+
+/* ---------- Badges ---------- */
+
+.lfs-badge {
+  display: inline-block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.lfs-badge-muted   { background: #ECEEEF; color: var(--lfs-muted); }
+.lfs-badge-live    { background: rgba(43, 110, 99, 0.12); color: var(--lfs-teal); }
+.lfs-badge-running { background: rgba(201, 122, 43, 0.14); color: var(--lfs-ochre); }
+.lfs-badge-error   { background: rgba(184, 76, 60, 0.12); color: var(--lfs-fail); }
+
+/* ---------- Placeholder tabs ---------- */
+
+.lfs-placeholder { max-width: 40rem; padding-top: 1.5rem; }
+.lfs-placeholder-text { margin-top: 0.75rem; opacity: 0.8; line-height: 1.5; }
+
+/* ---------- Quantification ---------- */
+
+.lfs-hint { font-size: 0.82rem; opacity: 0.65; margin-top: 0.35rem; }
+
+.lfs-match-grid > div { margin-bottom: 0.4rem; }
+
+.lfs-checklist { margin-top: 0.6rem; }
+.lfs-check-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.82rem;
+  padding: 0.15rem 0;
+}
+.lfs-check-icon { font-family: monospace; width: 1rem; flex-shrink: 0; }
+.lfs-check-ok .lfs-check-icon   { color: var(--lfs-teal); }
+.lfs-check-fail .lfs-check-icon { color: var(--lfs-fail); }
+.lfs-check-label { flex-shrink: 0; opacity: 0.9; }
+.lfs-check-msg { opacity: 0.6; }
+
+.lfs-status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.lfs-status-row h4 { margin: 0; font-size: 1rem; }
+
+.lfs-log {
+  background: var(--lfs-ink);
+  color: #E7F2EF;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.lfs-quant-main { padding: 0.5rem 0.25rem; }
+
+.lfs-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.lfs-gallery-item {
+  border: 1px solid var(--lfs-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: #FFFFFF;
+}
+.lfs-gallery-item img { width: 100%; height: auto; border-radius: 4px; }
+.lfs-gallery-item p {
+  font-size: 0.72rem;
+  opacity: 0.65;
+  margin: 0.4rem 0 0 0;
+  word-break: break-all;
+}
+
+/* ---------- Buttons / nav ---------- */
+
+.lfs-btn-primary {
+  background: var(--lfs-teal);
+  border-color: var(--lfs-teal);
+  color: #FFFFFF;
+}
+.lfs-btn-primary:hover { background: #235A51; border-color: #235A51; color: #FFFFFF; }
+
+.lfs-btn-secondary {
+  background: #FFFFFF;
+  border-color: var(--lfs-border);
+  color: var(--lfs-ink);
+}
+
+.lfs-nav-link { color: inherit; opacity: 0.85; text-decoration: none; }
+.lfs-nav-link:hover { opacity: 1; text-decoration: underline; }
+
+/* ---------- Global buttons: plain white, app-wide -------------------------
+   Placed here (before the navbar/hero sections below) deliberately: this
+   block and .btn-hero-primary/.btn-hero-secondary further down both use
+   !important on background-color, so with equal (single-class) specificity
+   the LATER rule in the file wins the cascade - keeping this block earlier
+   is what lets the hero's white/frosted-glass buttons stay visually
+   distinct against the bright hero gradient instead of being flattened to
+   plain white-on-white by the rule below. Every other button in the app
+   (Run/Annotate/Quantify/Extract Peaks, Save Result, Download, and Shiny's
+   own "Browse..." file-input button, which otherwise ships with an
+   unstyled brownish-orange focus/border) is intentionally unified here -
+   that includes overriding .lfs-btn-primary/secondary/outline further up,
+   which is the point: one plain, quiet button language app-wide. */
+.btn, .btn-default, .btn-primary, .btn-file, .action-button {
+  background-color: #FFFFFF !important;
+  color: #334155 !important;
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 0.55rem 1.2rem !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.2s ease !important;
+  text-shadow: none !important;
+}
+.btn:hover, .btn-default:hover, .btn-primary:hover, .btn-file:hover {
+  background-color: #FFF8F5 !important;
+  border-color: var(--lfs-accent) !important;
+  color: var(--lfs-accent) !important;
+}
+/* Shiny's fileInput "Browse..." control + its adjoining read-only
+   "No file selected" text field. */
+.btn-file { border-radius: 8px !important; }
+.file-input-container .form-control,
+.input-group .form-control {
+  background-color: #F1F5F9 !important;
+  color: #64748B !important;
+  border-color: #E2E8F0 !important;
+  border-radius: 6px !important;
+}
+
+/* numeric-heavy widgets read better tabular/monospaced */
+.dataTable { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; }
+
+/* ---------- Top navbar v7: sticky, 85px, Warm Cream ---------- */
+
+.navbar, header, .navbar-default {
+  background-color: var(--lfs-navbar-bg) !important;
+  min-height: 85px !important;
+  padding: 0.8rem 3.5rem !important;
+  border-bottom: 1px solid #F8E5DC !important;
+  box-shadow: 0 4px 15px rgba(216, 90, 72, 0.05) !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+}
+/* page_navbar's own inner container - let it fill the taller bar instead of
+   fighting the flex/padding just applied to .navbar itself. */
+.navbar > .container-fluid {
+  display: flex !important;
+  align-items: center !important;
+  width: 100%;
+  padding: 0 !important;
+}
+
+/* --- App logo + name, left side --- */
+.navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin-right: 2.5rem !important;
+}
+.navbar-brand img,
+.app-logo-nav {
+  height: 55px !important;
+  width: auto !important;
+  margin-right: 12px !important;
+}
+/* Brand text deliberately NOT bold this pass - weight 500, thin/elegant,
+   set in the orange-red accent instead of white now that the navbar itself
+   is light cream. */
+.navbar-brand span,
+.app-title-nav {
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  color: var(--lfs-accent) !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* --- Main navbar tabs (Home / Small Tools / LipidAnalysis / Help Documents) --- */
+.navbar-nav > li > a,
+.navbar-nav .nav-link {
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  color: #64748B !important; /* inactive */
+  padding: 0.8rem 1.2rem !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 3px solid transparent !important;
+}
+.navbar-nav > li > a:hover,
+.navbar-nav .nav-link:hover {
+  color: var(--lfs-accent) !important; /* hover */
+  background: transparent !important;
+}
+.navbar-nav > .active > a,
+.navbar-nav > .active > a:focus,
+.navbar-nav > .active > a:hover,
+.navbar-nav .nav-link.active {
+  color: var(--lfs-accent) !important; /* active */
+  background: transparent !important;
+  font-weight: 700 !important;
+  border-bottom-color: var(--lfs-accent) !important;
+}
+
+/* --- Lab logo, right side --- */
+.lab-logo-container {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 1.5rem !important;
+}
+.lab-logo-container img {
+  height: 58px !important;
+  width: auto !important;
+  padding: 4px 0 !important;
+  object-fit: contain !important;
+}
+
+/* ---------- Sub-tabs (Data Import / Step 1-3 / Save Results, and any other
+   navset_tab()-based tab strip, e.g. Peak table / QC plots) ---------- */
+/* NB: bslib renders navset_tab()'s <ul>/<li> via a Bootstrap-3-compat shim
+   (bs3compat) even under a Bootstrap 5 theme - the "active" class lands on
+   the <li>, not the <a> (confirmed against this app's actual bslib output),
+   so the ">li"/">li.active" selectors below are the ones that actually
+   match, not a ".nav-link.active" BS5-style class. */
+.nav-tabs, .nav-pills {
+  border-bottom: 2px solid #E2E8F0 !important;
+  margin-bottom: 1.5rem !important;
+}
+.nav-tabs > li > a, .nav-pills > li > a {
+  font-size: 1.02rem !important;
+  font-weight: 600 !important;
+  color: #64748B !important; /* inactive */
+  border: none !important;
+  padding: 0.75rem 1.4rem !important;
+  border-radius: 8px 8px 0 0 !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+.nav-tabs > li > a i, .nav-pills > li > a i {
+  color: #94A3B8 !important;
+}
+.nav-tabs > li > a:hover, .nav-pills > li > a:hover {
+  color: var(--lfs-accent) !important;
+  background-color: #F1F5F9 !important;
+}
+.nav-tabs > li > a:hover i, .nav-pills > li > a:hover i {
+  color: var(--lfs-accent) !important;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover,
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover,
+.nav-link.active {
+  color: var(--lfs-accent) !important; /* active */
+  font-weight: 700 !important;
+  background-color: transparent !important;
+  border-bottom: 3px solid var(--lfs-accent) !important;
+}
+.nav-tabs > li.active > a i, .nav-pills > li.active > a i, .nav-link.active i {
+  color: var(--lfs-accent) !important;
+}
+/* This app's own step-title badges (the numbered circle before "Step 1:
+   Peak Picking" etc., see R/app_ui.R's step_title()) aren't <i> icons, but
+   the same "icon follows active state" intent applies to them. */
+.nav-tabs > li.active > a .lfs-step-num, .nav-pills > li.active > a .lfs-step-num {
+  background: var(--lfs-accent) !important;
+}
+
+/* ---------- Home v9: Warm Peach & Cream hero, quiet + elegant ---------- */
+
+/* --- HERO BANNER: bo góc mềm mại, gradient kem đào nhẹ nhàng --- */
+.hero-banner {
+  background: linear-gradient(135deg, var(--lfs-hero-from) 0%, var(--lfs-hero-to) 100%) !important;
+  border-radius: 28px !important;
+  padding: 3.2rem 4.5rem !important;
+  margin: 1.8rem 0 2.5rem 0 !important;
+  box-shadow: 0 15px 30px rgba(216, 90, 72, 0.06) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 2.5rem !important;
+  flex-wrap: wrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.banner-content { flex: 1 1 420px; min-width: 0; }
+
+.hero-banner h1.banner-title {
+  font-size: 3.4rem !important;
+  font-weight: 800 !important;
+  color: var(--lfs-accent) !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.1 !important;
+  text-shadow: none !important; /* no outline/stroke on the title */
+}
+
+.hero-banner h3.banner-subtitle {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--lfs-accent-dark) !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 1rem !important;
+}
+
+.hero-banner p.banner-desc {
+  font-size: 1.05rem !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  color: #475569 !important;
+  max-width: 640px !important;
+  margin-bottom: 2rem !important;
+}
+
+.banner-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* --- LOGO CAM: hiệu ứng thở (breathing/pulse) nhẹ nhàng, vô tận --- */
+@keyframes logoBreathing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.banner-logo-container { flex: 0 0 auto; }
+.banner-logo-container img {
+  width: 210px !important;
+  height: auto !important;
+  filter: drop-shadow(0px 10px 20px rgba(216, 90, 72, 0.15)) !important;
+  animation: logoBreathing 4s ease-in-out infinite !important;
+  cursor: pointer !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner-logo-container img { animation: none !important; }
+}
+
+/* --- Nút Hero: cả 2 nút đặc cách khác với nút trắng toàn cục ở trên
+   (đặt SAU trong file để thắng cascade). Get Started = nền đỏ cam đặc,
+   chữ trắng; Help Documents = trắng/viền đỏ cam - đảo ngược so với bản
+   trước (khi đó nền hero tối, giờ nền hero sáng nên cần nút primary đặc
+   màu mới nổi bật). --- */
+.btn-hero-primary {
+  background-color: var(--lfs-accent) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  padding: 0.8rem 2.2rem !important;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 15px rgba(216, 90, 72, 0.25) !important;
+  transition: all 0.25s ease !important;
+  margin-right: 1rem !important;
+}
+
+.btn-hero-primary:hover {
+  background-color: var(--lfs-accent-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-hero-secondary {
+  background-color: #FFFFFF !important;
+  border: 1.5px solid var(--lfs-accent) !important;
+  color: var(--lfs-accent) !important;
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  padding: 0.8rem 2.2rem !important;
+  border-radius: 50px !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-hero-secondary:hover {
+  background-color: #FFF3EE !important;
+  transform: translateY(-2px) !important;
+}
+
+.lfs-overview { padding: 0.5rem 0 1.5rem 0; }
+.lfs-overview h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+
+/* --- CARD NỘI DUNG OVERVIEW BÊN DƯỚI (clean card) --- */
+.overview-card {
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+  padding: 2.5rem !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+  margin-bottom: 1.75rem;
+}
+.overview-card h3 {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  color: #0F4C44 !important;
+  margin-bottom: 1rem !important;
+}
+.overview-card p { font-size: 0.95rem; color: var(--lfs-muted); margin-bottom: 0; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .navbar, header, .navbar-default { padding: 0.6rem 1rem !important; min-height: 64px !important; }
+  .navbar-brand img, .app-logo-nav { height: 34px !important; }
+  .navbar-brand span, .app-title-nav { font-size: 1.2rem !important; }
+  .lab-logo-container img { height: 38px !important; }
+  .hero-banner { padding: 2.5rem 1.75rem !important; }
+  .hero-banner h1.banner-title { font-size: 2.4rem !important; }
+  .banner-logo-container img { width: 140px !important; }
+}
+
+.lfs-mini-card {
+  background: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.09);
+  padding: 1.5rem 1.4rem;
+  flex: 1 1 220px;
+  position: relative;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lfs-mini-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.16);
+  }
+}
+.lfs-mini-num {
+  display: flex;
+  align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--lfs-teal); color: #FFFFFF;
+  font-size: 1.05rem; font-weight: 700;
+  margin: 0 auto 0.85rem auto;
+}
+.lfs-mini-card h4 { font-size: 0.98rem; margin: 0.2rem 0 0.5rem 0; }
+.lfs-mini-card p { font-size: 0.87rem; opacity: 0.75; line-height: 1.45; margin: 0; }
+
+/* highlight/callout row (icon + text), used for the "Getting Started" note -
+   same visual language as featureMSEA's .highlight-box. */
+.lfs-highlight-row { display: flex; align-items: center; gap: 0.9rem; }
+.lfs-highlight-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; color: var(--lfs-teal); }
+
+/* ---------- lipidAnalysis: 3-step accordion ---------- */
+
+.lfs-analysis { padding-top: 0.5rem; max-width: 62rem; }
+.lfs-analysis h2 { margin-bottom: 0.25rem; }
+
+.lfs-step-num {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--lfs-teal); color: #FFFFFF;
+  font-size: 0.75rem; font-weight: 600;
+  margin-right: 0.5rem;
+}
+.lfs-step-body { padding: 0.5rem 0.25rem 1rem 0.25rem; }
+.lfs-run-row { margin: 1rem 0 0.75rem 0; }
+
+.lfs-hint-row { margin-top: 0.75rem; font-size: 0.9rem; }
+.lfs-hint-row span { opacity: 0.75; margin-right: 0.3rem; }
+
+/* ---------- lipidAnalysis dashboard v3: sidebar + results card ---------- */
+
+.lfs-sidebar {
+  border-right: 1px solid #dee2e6;
+}
+.lfs-sidebar .accordion-button {
+  font-weight: 500;
+}
+
+.lfs-results-card {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(22, 32, 42, 0.06);
+  margin: 0.75rem;
+}
+.lfs-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.lfs-results-title { margin: 0; font-size: 1.15rem; }
+
+.lfs-subcard {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(22, 32, 42, 0.04);
+  margin-bottom: 1rem;
+}
+
+.lfs-btn-outline {
+  background: #FFFFFF;
+  color: var(--lfs-ink);
+  border: 1px solid var(--lfs-border);
+}
+.lfs-btn-outline:hover { background: #F0F0F0; color: var(--lfs-ink); }
+
+/* ---------- Chunk 5 (v2): busy overlay matching featureMSEA's modal style ---------- */
+
+.lfs-busy-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(22, 32, 42, 0.55);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lfs-busy-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+.lfs-busy-card h4 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.15rem;
+  text-align: left;
+  border-bottom: 1px solid var(--lfs-border);
+  padding-bottom: 0.75rem;
+}
+.lfs-busy-card .lfs-spinner {
+  width: 44px; height: 44px;
+  margin: 0.5rem auto 1rem auto;
+  border: 5px solid #E7E7E7;
+  border-top-color: var(--lfs-teal);
+  border-radius: 50%;
+  animation: lfs-spin 0.8s linear infinite;
+}
+@keyframes lfs-spin { to { transform: rotate(360deg); } }
+.lfs-busy-card .lfs-busy-desc {
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+.lfs-busy-card .lfs-busy-warn {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0 0 0.75rem 0;
+}
+.lfs-busy-card .lfs-busy-status {
+  font-size: 0.85rem;
+  color: var(--lfs-teal);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* ---------- Help Documents (academic-style rendered Markdown) ---------- */
+
+.lfs-help-page { padding: 1.5rem 0 3rem 0; }
+
+.lfs-help-shell {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.lfs-help-toc {
+  flex: 0 0 220px;
+  position: sticky;
+  top: 1rem;
+  background: #FFFFFF;
+  border: 1px solid var(--lfs-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  font-size: 0.86rem;
+}
+.lfs-help-toc h6 {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  color: var(--lfs-muted);
+  margin-bottom: 0.6rem;
+}
+.lfs-help-toc a {
+  display: block;
+  color: var(--lfs-ink);
+  opacity: 0.75;
+  text-decoration: none;
+  padding: 0.25rem 0;
+}
+.lfs-help-toc a:hover { opacity: 1; color: var(--lfs-teal); }
+
+.lfs-help-doc {
+  flex: 1 1 auto;
+  background: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(44, 62, 80, 0.09);
+  padding: 2.25rem 2.75rem;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--lfs-ink);
+}
+.lfs-help-doc h1 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--lfs-ink);
+  border-bottom: 3px solid var(--lfs-teal);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+.lfs-help-doc > p:first-of-type {
+  color: var(--lfs-muted);
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+}
+.lfs-help-doc h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--lfs-teal);
+  margin: 2.25rem 0 0.9rem 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--lfs-border);
+}
+.lfs-help-doc h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0.5rem; }
+.lfs-help-doc h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--lfs-ink);
+  margin: 1.4rem 0 0.6rem 0;
+}
+.lfs-help-doc p { margin: 0 0 0.9rem 0; }
+.lfs-help-doc ul, .lfs-help-doc ol { margin: 0 0 0.9rem 0; padding-left: 1.3rem; }
+.lfs-help-doc li { margin-bottom: 0.35rem; }
+.lfs-help-doc code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85em;
+  background: #F0F3F2;
+  color: var(--lfs-teal);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+.lfs-help-doc pre {
+  background: var(--lfs-ink);
+  color: #E7F2EF;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.1rem;
+}
+.lfs-help-doc pre code { background: transparent; color: inherit; padding: 0; }
+.lfs-help-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.3rem;
+  font-size: 0.88rem;
+}
+.lfs-help-doc th, .lfs-help-doc td {
+  border: 1px solid var(--lfs-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.lfs-help-doc th { background: #F5F6F7; font-weight: 700; }
+.lfs-help-doc tr:nth-child(even) td { background: #FAFBFB; }
+.lfs-help-doc blockquote {
+  border-left: 3px solid var(--lfs-orange);
+  background: #FFF6F1;
+  margin: 0 0 1.1rem 0;
+  padding: 0.75rem 1.1rem;
+  border-radius: 0 6px 6px 0;
+  color: var(--lfs-ink);
+  opacity: 0.9;
+}
+.lfs-help-doc hr { border: none; border-top: 1px solid var(--lfs-border); margin: 1.75rem 0; }
+.lfs-help-doc a { color: var(--lfs-teal); }
+
+@media (max-width: 900px) {
+  .lfs-help-shell { flex-direction: column; }
+  .lfs-help-toc { position: static; width: 100%; flex: 1 1 auto; }
+}

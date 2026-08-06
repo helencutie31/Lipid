@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LipidFlow User Guide</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="custom.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">LipidFlow User Guide</h1>
+</header>
+<h1 id="lipidflow--user-guide">LipidFlow — User Guide</h1>
+<p><em>Style theo đúng cấu trúc <a
+href="https://www.jaspershenlab.com/lipidflow/articles/overview_of_lipidflow.html">Overview
+of lipidflow</a> - liệt kê "Data organization" trước, rồi mới tới từng
+bước.</em></p>
+<hr />
+<h1 id="data-organization">Data organization</h1>
+<p>Trước khi bắt đầu, LipidFlow cần <strong>4 loại dữ liệu</strong>, tất
+cả upload trong <strong>Data Import</strong>:</p>
+<ol type="1">
+<li><strong>Mass spectrum raw data</strong> (mzXML) - cho Peak
+Picking</li>
+<li><strong>MS2 spectral data</strong> (MGF hoặc MSP) - cho Lipid
+Annotation</li>
+<li><strong>Spectral database</strong> (.rda) - cho Lipid Annotation (đã
+có sẵn database mặc định, không bắt buộc tự upload)</li>
+<li><strong>Internal standard information</strong> (.xlsx) - cho
+Quantification</li>
+</ol>
+<hr />
+<h2 id="1-convert-raw-data-to-mzxml">1. Convert raw data to mzXML</h2>
+<p>Dữ liệu raw từ máy khối phổ (định dạng riêng từng hãng:
+<code>.raw</code> của Thermo, <code>.d</code> của Agilent/Bruker...) cần
+convert sang <strong>mzXML</strong> trước, dùng <a
+href="http://proteowizard.sourceforge.net/">ProteoWizard
+(msConvert)</a>.</p>
+<p><strong>Lưu ý quan trọng:</strong> mzXML <strong>vẫn là raw data
+thật</strong> - chỉ là định dạng đã chuẩn hoá, không phải dữ liệu đã qua
+xử lý/lọc gì. LipidFlow <strong>không</strong> làm được bước convert này
+- phải tự làm trước bằng ProteoWizard.</p>
+<p>Tổ chức file theo group ngay từ tên file trước khi upload - ví dụ
+nhóm <code>D25</code> (2 lần lặp) và <code>M19</code> (2 lần lặp):</p>
+<pre><code>D25_1.mzXML
+D25_2.mzXML
+M19_1.mzXML
+M19_2.mzXML</code></pre>
+<p>LipidFlow tự đọc group từ tên file (bỏ số thứ tự cuối) - không cần
+bảng metadata riêng cho bước này.</p>
+<hr />
+<h2 id="2-convert-raw-data-to-ms2-mgf-hoặc-msp">2. Convert raw data to
+MS2 (MGF hoặc MSP)</h2>
+<p><strong>Đây là bước convert RIÊNG BIỆT</strong>, khác với bước
+convert mzXML ở trên - dù MS2 vốn đã có sẵn trong file raw gốc,
+LipidFlow cần trích riêng ra dạng MGF hoặc MSP để dùng cho Annotation.
+Cũng dùng ProteoWizard, xuất ra định dạng MGF (hoặc MSP) thay vì
+mzXML.</p>
+<p>LipidFlow hỗ trợ <strong>cả 2 định dạng</strong> MGF và MSP cho bước
+này.</p>
+<hr />
+<h2 id="3-spectral-database">3. Spectral database</h2>
+<p>LipidFlow dùng thư viện phổ MS2 công khai từ
+<strong>MS-DIAL</strong>, đã được convert sang định dạng
+<code>.rda</code> (định dạng package <code>metid</code> yêu cầu) và
+<strong>có sẵn mặc định trong app</strong> - phần lớn trường hợp không
+cần tự upload gì ở đây.</p>
+<p>Nếu muốn dùng database khác (cá nhân hoá, hoặc database riêng của
+bạn), vẫn có thể tự upload trong Data Import.</p>
+<hr />
+<h2 id="4-internal-standard-information">4. Internal standard
+information</h2>
+<p>Dữ liệu cần dạng <strong>xlsx</strong>, đúng 5 cột theo thứ tự
+sau:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Cột</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>name</code></td>
+<td>Tên internal standard</td>
+</tr>
+<tr class="even">
+<td><code>exact.mass</code></td>
+<td>Khối lượng chính xác</td>
+</tr>
+<tr class="odd">
+<td><code>formula</code></td>
+<td>Công thức hoá học</td>
+</tr>
+<tr class="even">
+<td><code>ug_ml</code></td>
+<td>Nồng độ (µg/mL)</td>
+</tr>
+<tr class="odd">
+<td><code>um</code></td>
+<td>Nồng độ (µmol) - <em>lưu ý: dù cột tên là "um", đơn vị thật là µmol,
+không phải µm (đơn vị chiều dài) - tránh nhầm lẫn</em></td>
+</tr>
+</tbody>
+</table>
+<p>LipidFlow tự kiểm tra đủ 5 cột này khi bạn upload - báo lỗi ngay nếu
+thiếu hoặc sai tên cột.</p>
+<hr />
+<h1 id="workflow---5-bước-trong-lipidanalysis">Workflow - 5 bước trong
+lipidAnalysis</h1>
+<p>Mỗi bước tự động nhận kết quả từ bước trước - không cần upload lại dữ
+liệu đã dùng.</p>
+<hr />
+<h2 id="bước-1-data-import">Bước 1: Data Import</h2>
+<p>Nơi duy nhất cần upload/nhập file cho cả pipeline - xem chi tiết 4
+loại dữ liệu ở phần Data organization phía trên.</p>
+<ul>
+<li><strong>Peak Picking data</strong>: chọn Option A (phân tích mới -
+upload file hoặc dùng demo data) hoặc Option B (nạp lại kết quả đã chạy
+trước)</li>
+<li><strong>Lipid Annotation data</strong>: file MS2 (MGF/MSP) +
+database (.rda, có mặc định sẵn)</li>
+<li><strong>Quantification data</strong>: bảng Internal Standard</li>
+</ul>
+<hr />
+<h2 id="bước-2-peak-picking">Bước 2: Peak Picking</h2>
+<p>Bấm <strong>Run</strong> ở Step 1. Tham số kỹ thuật (ppm, peak
+width...) nằm trong <strong>Advanced settings</strong>, mặc định phù hợp
+cho hầu hết trường hợp.</p>
+<p>Kết quả gồm 2 phần:</p>
+<ul>
+<li><strong>Peak table</strong>: bảng đầy đủ - mỗi hàng 1 peak (m/z,
+RT), mỗi cột 1 sample là giá trị intensity. Tải về bằng nút
+<strong>Download CSV</strong>.</li>
+<li><strong>QC plots</strong>: biểu đồ TIC/BPC (kiểm tra chất lượng lần
+chạy máy) và RT correction (kiểm tra alignment giữa các sample) - không
+bắt buộc xem, nhưng nên kiểm tra nếu chuẩn bị dùng kết quả để công
+bố.</li>
+</ul>
+<hr />
+<h2 id="bước-3-lipid-annotation">Bước 3: Lipid Annotation</h2>
+<p>Tự động nhận feature từ Bước 2. Chọn loại cột sắc ký
+(<code>rp</code>/<code>hilic</code>), bấm <strong>Annotate</strong>.</p>
+<hr />
+<h2 id="bước-4-quantification">Bước 4: Quantification</h2>
+<p>Tự động nhận kết quả đã annotate từ Bước 3. Chọn internal standard
+muốn dùng, bấm <strong>Quantify</strong>.</p>
+<hr />
+<h2 id="bước-5-save-results">Bước 5: Save Results</h2>
+<p>Tải kết quả mới nhất (<strong>Save Result</strong>) hoặc toàn bộ dữ
+liệu đã tạo ra trong phiên làm việc (<strong>Save All
+Data</strong>).</p>
+<hr />
+<h1 id="khuyến-nghị-khi-xử-lý-dữ-liệu-lớn">Khuyến nghị khi xử lý dữ liệu
+lớn</h1>
+<p>Nếu có nhiều mẫu chạy trải dài qua nhiều tháng, thời gian lưu giữ
+(RT) và độ nhạy máy có thể trôi (drift) giữa các đợt chạy. Khuyến nghị
+xử lý <strong>cùng 1 batch dữ liệu cùng lúc</strong> thay vì gộp nhiều
+đợt chạy cách xa nhau vào 1 lần phân tích.</p>
+<hr />
+<h1 id="troubleshooting">Troubleshooting</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Triệu chứng</th>
+<th>Nguyên nhân</th>
+<th>Cách xử lý</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Status báo Error sau khi Run</td>
+<td>Thiếu file bắt buộc</td>
+<td>Xem log panel - báo rõ đang thiếu gì</td>
+</tr>
+<tr class="even">
+<td>Upload IS table báo lỗi</td>
+<td>Sai tên cột hoặc thiếu cột</td>
+<td>Đối chiếu đúng 5 cột ở mục "Internal standard information"</td>
+</tr>
+<tr class="odd">
+<td>Bước 2/3 báo "No data yet"</td>
+<td>Bước trước chưa hoàn thành</td>
+<td>Quay lại hoàn thành bước trước</td>
+</tr>
+<tr class="even">
+<td>QC plots không hiện</td>
+<td>Đang dùng Option B (load lại kết quả cũ) không có sẵn file PDF</td>
+<td>Bình thường - chỉ Option A (chạy mới) mới có</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

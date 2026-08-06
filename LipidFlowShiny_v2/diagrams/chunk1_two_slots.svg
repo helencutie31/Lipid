@@ -1,0 +1,40 @@
+<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+<style>
+  .box { stroke-width: 1.5; }
+  .hdr   { fill:#F2F2F2; stroke:#888888; }
+  .teal  { fill:#E3F3EF; stroke:#2B6E63; }
+  .amber { fill:#FFF3E0; stroke:#B8860B; }
+  .th { font-size:14px; font-weight:700; fill:#1A1A1A; }
+  .tt { font-size:15px; font-weight:700; fill:#1A1A1A; }
+  .ts { font-size:12px; fill:#444444; }
+  .dash { stroke:#555555; stroke-width:1.5; stroke-dasharray:4 3; }
+</style>
+<rect width="680" height="240" fill="#FFFFFF"/>
+
+<text class="tt" x="180" y="24" text-anchor="middle">variable_info</text>
+<text class="tt" x="530" y="24" text-anchor="middle">expression_data</text>
+
+<rect class="box hdr" x="40" y="40" width="280" height="40"/>
+<text class="th" x="180" y="65" text-anchor="middle">variable_id · mz · rt</text>
+
+<rect class="box hdr" x="400" y="40" width="260" height="40"/>
+<text class="th" x="530" y="65" text-anchor="middle">(rowname) · Sample_A · Sample_B</text>
+
+<rect class="box teal" x="40" y="80" width="280" height="40"/>
+<text class="th" x="180" y="105" text-anchor="middle">P1 · 100.12 · 70</text>
+
+<rect class="box teal" x="400" y="80" width="260" height="40"/>
+<text class="th" x="530" y="105" text-anchor="middle">P1 · 1200 · 980</text>
+
+<rect class="box amber" x="40" y="120" width="280" height="40"/>
+<text class="th" x="180" y="145" text-anchor="middle">P2 · 205.43 · 95</text>
+
+<rect class="box amber" x="400" y="120" width="260" height="40"/>
+<text class="th" x="530" y="145" text-anchor="middle">P2 · 340 · 510</text>
+
+<line x1="320" y1="100" x2="400" y2="100" class="dash"/>
+<line x1="320" y1="140" x2="400" y2="140" class="dash"/>
+
+<text class="ts" x="340" y="190" text-anchor="middle">Khớp qua cùng 1 giá trị nhận diện:</text>
+<text class="ts" x="340" y="208" text-anchor="middle">cột variable_id (trái) = tên dòng / rowname (phải)</text>
+</svg>

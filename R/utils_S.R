@@ -1,34 +1,40 @@
-# MULTI-MODE LIPIDOMICS PIPELINE (UPDATED FOR .RDA)
-# Supports POS-only, NEG-only, or POS+NEG batch projects.
-
+# MULTI-MODE LIPIDOMICS PIPELINE (WITH RDA + MS2 MGF MATCHING)
 options(stringsAsFactors = FALSE)
 
 # ---- 1. CONFIGURE YOUR DATA --------------------------------------------------
-# Cập nhật đường dẫn mzXML dựa trên các ảnh trước
 mode_dirs <- list(
   positive = "C:/Users/LENOVO/Downloads/LipidFlowShiny/demo/POS_mzXML/D25",
   negative = "C:/Users/LENOVO/Downloads/LipidFlowShiny/demo/NEG_mzXML/D25"
 )
 
-# Đã cập nhật đường dẫn chính xác tới 2 file .rda theo ảnh image_d02923.png
+# File database .rda chuẩn MS2 đã convert thành công
 rda_files <- list(
   positive = "C:/Users/LENOVO/Downloads/LipidFlowShiny/msdial_lipid_pos_db.rda",
   negative = "C:/Users/LENOVO/Downloads/LipidFlowShiny/msdial_lipid_neg_db.rda"
 )
 
+# Đã cập nhật đường dẫn chính xác tới 2 thư mục MGF theo ảnh image_c4df42.png
 ms2_dirs <- list(
-  positive = file.path(mode_dirs$positive, "MS2_MGF"),
-  negative = file.path(mode_dirs$negative, "MS2_MGF")
+  positive = "C:/Users/LENOVO/Downloads/LipidFlowShiny/demo/D25_POS_mgf",
+  negative = "C:/Users/LENOVO/Downloads/LipidFlowShiny/demo/D25_NEG_mgf"
 )
 
 run_massprocesser_if_needed <- TRUE
 peak_params <- list(ppm = 15, peakwidth = c(10, 60), snthresh = 5,
                     noise = 500, min_fraction = 0.5, fill_peaks = FALSE)
 column_type <- "rp"
-threads <- 3L
-annotation_params <- list(ms1_ppm = 15, ms2_ppm = 20, ms2_tol = 0.02,
-                          ms1_ms2_ppm = 10, ms1_ms2_rt_seconds = 20,
-                          candidate_num = 3L)
+
+# Giữ threads = 1L để đảm bảo không bị lỗi bplapply trên Windows
+threads <- 1L 
+
+annotation_params <- list(
+  ms1_ppm = 15, 
+  ms2_ppm = 20, 
+  ms2_tol = 0.02,
+  ms1_ms2_ppm = 10, 
+  ms1_ms2_rt_seconds = 20,
+  candidate_num = 3L
+)
 
 run_lipidflow_targeted_extraction <- FALSE
 
@@ -74,14 +80,6 @@ load_object <- function(path) {
   object
 }
 
-get_info <- function(entry, field, numeric = FALSE) {
-  fields <- switch(field, mz = c("mz", "MZ", "PRECURSORMZ", "PRECURSOR_M/Z"), rt = c("rt", "RT", "RETENTIONTIME", "RetentionTime", "Retention Time"), field)
-  value <- NULL
-  for (field_name in fields) if (field_name %in% names(entry$info)) { value <- entry$info[[field_name]]; break }
-  if (is.null(value) || !length(value) || is.na(value[1]) || identical(value[1], "")) return(if (numeric) NA_real_ else NA_character_)
-  if (numeric) suppressWarnings(as.numeric(value[1])) else as.character(value[1])
-}
-
 find_col <- function(x, choices) {
   index <- match(tolower(choices), tolower(names(x)), nomatch = 0L)
   index <- index[index > 0L]
@@ -99,7 +97,10 @@ add_feature_coordinates <- function(ann, object) {
   }
   
   feature_coordinates <- data.frame(
-    feature_id = var_info[[variable_id]], mz = suppressWarnings(as.numeric(var_info[[mz_col]])), rt = suppressWarnings(as.numeric(var_info[[rt_col]])), stringsAsFactors = FALSE
+    feature_id = var_info[[variable_id]], 
+    mz = suppressWarnings(as.numeric(var_info[[mz_col]])), 
+    rt = suppressWarnings(as.numeric(var_info[[rt_col]])), 
+    stringsAsFactors = FALSE
   )
   names(feature_coordinates)[1] <- annotation_id
   
@@ -136,16 +137,20 @@ for (mode in active_modes) {
   mode_dir <- mode_dirs[[mode]]
   output_dir <- file.path(mode_dir, "MetID_Output")
   dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
-  message("\n===== ", toupper(mode), " =====")
+  message("\n==================================================")
+  message("PROCESSING MODE: ", toupper(mode))
+  message("==================================================")
   
+  # 1. Peak Picking / Load Mass Dataset Object
   if (is.na(find_object(mode_dir))) {
-    if (!run_massprocesser_if_needed) stop("No Result/object for ", mode, ". Set run_massprocesser_if_needed = TRUE after arranging and validating the input data.")
+    if (!run_massprocesser_if_needed) stop("No Result/object for ", mode, ". Set run_massprocesser_if_needed = TRUE after arranging input data.")
     do.call(massprocesser::process_data, c(list(
       path = mode_dir, polarity = mode, threads = threads, output_tic = TRUE, output_bpc = TRUE, output_rt_correction_plot = TRUE
     ), peak_params))
   }
   object <- load_object(mode_dir)
   
+  # 2. Attach MS2 MGF Data
   mgf_dir <- ms2_dirs[[mode]]
   mgfs <- if (!is.null(mgf_dir) && dir.exists(mgf_dir)) list.files(mgf_dir, pattern = "\\.mgf$", recursive = TRUE, ignore.case = TRUE, full.names = TRUE) else character()
   if (length(mgfs)) {
@@ -153,15 +158,19 @@ for (mode in active_modes) {
                                       ms1.ms2.match.mz.tol = annotation_params$ms1_ms2_ppm,
                                       ms1.ms2.match.rt.tol = annotation_params$ms1_ms2_rt_seconds, path = mgf_dir)
     message("Attached MS2 from ", length(mgfs), " MGF file(s).")
-  } else message("No MGF MS2 files: this mode will receive MS1-only MetID matches.")
+  } else message("No MGF MS2 files found in: ", mgf_dir)
   
+  # 3. Load RDA Database
   message("Loading Database for ", mode, "...")
   db_env <- new.env(parent = emptyenv())
   loaded_names <- load(rda_files[[mode]], envir = db_env)
   database <- db_env[[loaded_names[1]]] 
-  metid::check_database(database) 
-  message("Database loaded successfully.")
   
+  # Validate Database Structure
+  metid::check_database(database) 
+  message("Database loaded and validated successfully.")
+  
+  # 4. Perform Annotation (MS1 + MS2)
   annotated <- metid::annotate_metabolites_mass_dataset(
     object = object, database = database, polarity = mode, column = column_type,
     ms1.match.ppm = annotation_params$ms1_ppm, ms2.match.ppm = annotation_params$ms2_ppm,
@@ -171,6 +180,7 @@ for (mode in active_modes) {
   saveRDS(annotated, file.path(output_dir, "annotated_mass_dataset.rds"), compress = FALSE)
   ann <- massdataset::extract_annotation_table(annotated)
   
+  # 5. Export Results
   if (nrow(ann)) {
     all_annotations <- add_feature_coordinates(ann, annotated)
     review_targets <- best_candidate_per_feature(all_annotations)
@@ -182,8 +192,10 @@ for (mode in active_modes) {
   }
   
   results[[mode]] <- list(output_dir = output_dir, annotation_rows = nrow(ann))
-  message("MetID rows: ", nrow(ann), ". Review output: ", output_dir)
+  message("MetID rows: ", nrow(ann), ". Review output saved in: ", output_dir)
 }
 
-message("Finished modes: ", paste(names(results), collapse = ", "))
+message("\n==================================================")
+message("ALL MODES FINISHED SUCCESSFULLY WITH MS2 MATCHING: ", paste(names(results), collapse = ", "))
+message("==================================================")
 

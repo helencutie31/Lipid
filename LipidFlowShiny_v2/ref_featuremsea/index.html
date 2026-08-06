@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">jquery[3.7.1];shiny-sass[1.13.0];shiny-busy-indicators[1.13.0];shiny-javascript[1.13.0];bootstrap[5.3.8];bs3compat[0.11.0];htmltools-fill[0.5.9];bslib-component-js[0.11.0];bslib-component-css[0.11.0];font-awesome[6.5.2];htmlwidgets[1.6.4];datatables-css[0.0.0];datatables-binding[0.34.0];crosstalk[1.2.2];bslib-tag-require[0.11.0];selectize[0.15.2]</script>
+<script src="jquery-3.7.1/jquery.min.js"></script>
+<link href="shiny-sass-1.13.0/shiny-sass.css" rel="stylesheet" />
+<link href="shiny-busy-indicators-1.13.0/busy-indicators.css" rel="stylesheet" />
+<script src="shiny-javascript-1.13.0/shiny.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet" />
+<script src="bootstrap-5.3.8/bootstrap.bundle.min.js"></script>
+<script src="bs3compat-0.11.0/transition.js"></script>
+<script src="bs3compat-0.11.0/tabs.js"></script>
+<script src="bs3compat-0.11.0/bs3compat.js"></script>
+<link href="htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="bslib-component-js-0.11.0/components.min.js"></script>
+<script src="bslib-component-js-0.11.0/web-components.min.js" type="module"></script>
+<link href="bslib-component-css-0.11.0/bslib-component-css.min.css" rel="stylesheet" />
+<link href="font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<script src="htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="datatables-binding-0.34.0/datatables.js"></script>
+<link href="crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<script src="bslib-tag-require-0.11.0/tag-require.js"></script>
+<link href="selectize-0.15.2/selectize.css" rel="stylesheet" />
+<script src="selectize-0.15.2/selectize.min.js"></script>
+<script src="selectize-0.15.2/selectize-plugin-a11y.min.js"></script>  <title>featureMSEA</title>
+  <style>html { height: 100%; }</style>
+  <link rel="icon" type="image/png" href="www/logo.png"/>
+  <style>
+        .navbar { align-items: center; }
+        .navbar-nav { align-self: center; }
+        .navbar-nav .nav-link { display: flex; align-items: center; height: 100%; }
+      </style>
+<script src="__assets__/sockjs.min.js"></script>
+<script src="__assets__/shiny-server-client.min.js"></script>
+<script>preShinyInit({reconnect:true,disableProtocols:[]});</script>
+<link rel="stylesheet" type="text/css" href="__assets__/shiny-server.css"/>
+
+</head>
+<body>
+  <body class="bslib-page-fill bslib-gap-spacing bslib-flow-mobile html-fill-container bslib-page-navbar" style="padding:0px;gap:0px;">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" data-bs-theme="auto">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2068" data-bs-toggle="collapse" data-bs-target="#navbar-collapse-2068">
+            <span class="sr-only visually-hidden">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">
+            <span>
+              <img src="www/logo.png" height="80px" style="margin-right: 8px; vertical-align: middle;"/>
+              featureMSEA
+            </span>
+          </span>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-collapse-2068">
+          <ul class="nav navbar-nav nav-underline" data-tabsetid="6655">
+            <li class="nav-item">
+              <a href="#tab-6655-1" data-toggle="tab" data-bs-toggle="tab" data-value="Introduction" class="nav-link active">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-info-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>
+                Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab-6655-2" data-toggle="tab" data-bs-toggle="tab" data-value="featureMSEA Analysis" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-diagram-3 " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"></path></svg>
+                featureMSEA Analysis
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#tab-6655-3" data-toggle="tab" data-bs-toggle="tab" data-value="Authors" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-people " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"></path></svg>
+                Authors
+              </a>
+            </li>
+            <div class="bslib-nav-spacer"></div>
+            <li class="bslib-nav-item nav-item form-inline">
+              <img src="www/lab_logo.png" height="60px" style="vertical-align: middle; padding: 0 12px;"/>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid html-fill-item html-fill-container">
+      <div class="tab-content html-fill-item html-fill-container" data-tabsetid="6655">
+        <div class="tab-pane active html-fill-item html-fill-container bslib-gap-spacing" data-value="Introduction" id="tab-6655-1" style="--bslib-navbar-margin:0;">
+          <style>
+        .intro-step-card {
+          border: none;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(44,62,80,0.09);
+          height: 100%;
+        }
+        .intro-step-card .step-number {
+          width: 40px; height: 40px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1.1rem; font-weight: 700; color: white;
+          margin: 0 auto 14px auto;
+        }
+        .highlight-box {
+          border-left: 4px solid #18BC9C;
+          background: #f4fdf9;
+          border-radius: 0 8px 8px 0;
+          padding: 14px 18px;
+        }
+      </style>
+          <div class="container-fluid" style="padding: 30px 40px;">
+            <div style="background: linear-gradient(135deg, #2C3E50 0%, #18BC9C 100%);&#10;                   border-radius: 14px; padding: 40px 48px; margin-bottom: 32px; color: white;">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h1 style="font-weight: 800; font-size: 2.4rem; margin-bottom: 10px;">featureMSEA</h1>
+                  <h5 style="font-weight: 400; opacity: 0.9; margin-bottom: 16px;">Feature-based Metabolite Set Enrichment Analysis</h5>
+                  <p style="opacity: 0.85; font-size: 1.0rem; margin-bottom: 24px;">FeatureMSEA performs metabolite set enrichment directly from LC-MS metabolic
+                features without requiring confident metabolite identification. By extracting
+                metabolite set-level biological insights from the full untargeted feature space,
+                featureMSEA enables mechanistic interpretation of complex biological phenotypes
+                across diverse applications in disease biology, environmental exposure, drug
+                response, and related research areas.</p>
+                  <div class="d-flex gap-3 flex-wrap">
+                    <button class="btn btn-default action-button btn-light btn-lg" id="start_analysis" onclick="$(&quot;a[data-value=&#39;featureMSEA Analysis&#39;]&quot;).click();" style="font-weight: 600; color: #2C3E50;" type="button"><span class="action-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-play-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"></path></svg>
+                         Get Started</span></button>
+                    <a href="https://www.tidymass.org/featuremsea_tutorial/" target="_blank" class="btn btn-outline-light btn-lg" style="font-weight: 600;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-book " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path></svg>
+                       Help Documents
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <img src="www/logo.png" style="max-height: 130px; opacity: 0.92;"/>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12">
+                <div style="background: #fff; border-radius: 14px;&#10;                       box-shadow: 0 4px 18px rgba(44,62,80,0.09); padding: 28px 32px;">
+                  <h5 style="font-weight: 700; color: #2C3E50; margin-bottom: 6px;">Overview of featureMSEA</h5>
+                  <p style="font-size: 0.9rem; color: #6c757d; margin-bottom: 20px;">(a) Inputs: untargeted metabolomics data, annotation score table, feature
+                ranking table, and a metabolite set database.
+                (b) Core workflow: feature-level enrichment scoring with iterative
+                leading-edge-guided annotation refinement, permutation-based statistical
+                inference, and optional LLM-assisted interpretation.
+                (c) Key outputs: enriched metabolite sets and a refined annotation score table.</p>
+                  <div class="text-center">
+                    <img src="www/figure1.png" style="max-width: 100%; border-radius: 8px;"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-md-4">
+                <div class="intro-step-card">
+                  <div class="card-body text-center p-4">
+                    <div class="step-number" style="background: #18BC9C;">1</div>
+                    <h5 style="font-weight: 700; color: #2C3E50; margin-bottom: 10px;">Annotation &amp; Filtering</h5>
+                    <p style="font-size: 0.93rem; color: #6c757d;">Automatically annotate LC-MS features against KEGG or HMDB databases
+                  with customizable MS1 mass tolerance and retention time windows.
+                  Redundant annotations are removed to produce a clean feature ranking table.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="intro-step-card">
+                  <div class="card-body text-center p-4">
+                    <div class="step-number" style="background: #3498DB;">2</div>
+                    <h5 style="font-weight: 700; color: #2C3E50; margin-bottom: 10px;">featureMSEA Enrichment</h5>
+                    <p style="font-size: 0.93rem; color: #6c757d;">Perform feature-level enrichment scoring across KEGG, Reactome, HMDB,
+                  IMetPD, or WikiPathways databases. An iterative leading-edge-guided
+                  refinement loop improves annotation quality alongside enrichment scoring.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="intro-step-card">
+                  <div class="card-body text-center p-4">
+                    <div class="step-number" style="background: #F39C12;">3</div>
+                    <h5 style="font-weight: 700; color: #2C3E50; margin-bottom: 10px;">LLM-Assisted Interpretation</h5>
+                    <p style="font-size: 0.93rem; color: #6c757d;">Optionally evaluate enriched pathways using large language models.
+                  Assess pathway relevance to the sample matrix and research topic,
+                  with confidence scores to prioritize biologically meaningful results.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="highlight-box">
+              <div class="d-flex align-items-center gap-3">
+                <div style="font-size: 1.5rem; color: #18BC9C;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-lightbulb " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"></path></svg></div>
+                <div>
+                  <strong>Getting Started: </strong>
+                  Prepare your feature table in CSV or RDA format, then navigate to the 
+                  <strong>featureMSEA Analysis</strong>
+                   tab to begin.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane html-fill-item html-fill-container bslib-gap-spacing" data-value="featureMSEA Analysis" id="tab-6655-2" style="--bslib-navbar-margin:0;">
+          <script>
+      Shiny.addCustomMessageHandler('fillPasswordInput', function(data) {
+        var el = document.getElementById(data.id);
+        if (el) {
+          var setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+          setter.call(el, data.value);
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      });
+    </script>
+          <div class="bslib-sidebar-layout bslib-mb-spacing html-fill-item" data-bslib-sidebar-init="TRUE" data-collapsible-desktop="true" data-collapsible-mobile="true" data-open-desktop="open" data-open-mobile="closed" data-require-bs-caller="layout_sidebar()" data-require-bs-version="5" style="--_sidebar-width:250px;">
+            <div class="main bslib-gap-spacing html-fill-container">
+              <div class="card bslib-card bslib-mb-spacing html-fill-item html-fill-container" data-bslib-card-init data-full-screen="false" data-require-bs-caller="card()" data-require-bs-version="5" id="bslib-card-1416">
+                <div class="card-header bslib-gap-spacing">
+                  <div class="d-flex justify-content-between align-items-center">
+                    Analysis Results
+                    <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-sm" download href="" id="fmsea-download_table" tabindex="-1" target="_blank">
+                      <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                      Download Table (CSV)
+                    </a>
+                  </div>
+                </div>
+                <div class="card-body bslib-gap-spacing html-fill-item html-fill-container" style="margin-top:auto;margin-bottom:auto;flex:1 1 auto;padding:0px;">
+                  <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                    <h6>Significant Modules</h6>
+                    <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item" id="fmsea-sig_modules_table" style="width:100%;height:auto;"></div>
+                  </div>
+                  <div style="padding: 10px;">
+                    <h6>Enrichment Plot (Click significant module to visualize)</h6>
+                    <div style="display: flex; justify-content: center;">
+                      <div class="shiny-plot-output html-fill-item" id="fmsea-fmsea_plot" style="width:1000px;height:600px;"></div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                      <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-sm" download href="" id="fmsea-download_png" tabindex="-1" target="_blank">
+                        <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                        PNG
+                      </a>
+                      <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-sm" download href="" id="fmsea-download_pdf" tabindex="-1" target="_blank">
+                        <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                        PDF
+                      </a>
+                    </div>
+                  </div>
+                  <div style="padding: 10px; border-top: 1px solid #eee;">
+                    <h6>Annotation Table</h6>
+                    <div style="margin-top: 10px;">
+                      <div class="datatables html-widget html-widget-output shiny-report-size html-fill-item" id="fmsea-leading_edge_annotation_table" style="width:100%;height:auto;"></div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                      <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-sm" download href="" id="fmsea-download_annotation_table" tabindex="-1" target="_blank">
+                        <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                        Download Table (CSV)
+                      </a>
+                    </div>
+                  </div>
+                  <div id="fmsea-pathway_llm_evaluation_ui" class="shiny-html-output"></div>
+                </div>
+                <bslib-tooltip placement="auto" bsOptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+                  <template>Expand</template>
+                  <button aria-expanded="false" aria-label="Expand card" class="bslib-full-screen-enter badge rounded-pill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height:1em;width:1em;fill:currentColor;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"/></svg></button>
+                </bslib-tooltip>
+                <script data-bslib-card-init>bslib.Card.initializeAllCards();</script>
+              </div>
+            </div>
+            <aside id="bslib-sidebar-7763" class="sidebar" hidden data-resizable>
+              <div class="sidebar-content bslib-gap-spacing">
+                <div id="bslib-accordion-9201" class="accordion" data-require-bs-version="5" data-require-bs-caller="accordion()">
+                  <div class="accordion-item" data-value="Data Import">
+                    <div class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-7975" aria-controls="bslib-accordion-panel-7975" aria-expanded="true">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-upload " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+<path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"></path></svg></div>
+                        <div class="accordion-title">Data Import</div>
+                      </button>
+                    </div>
+                    <div id="bslib-accordion-panel-7975" class="accordion-collapse collapse show">
+                      <div class="accordion-body">
+                        <div style="border-left: 3px solid #18BC9C; padding-left: 10px; margin-bottom: 12px;">
+                          <p style="font-weight: 700; color: #18BC9C; margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.04em;">Option A: New Analysis</p>
+                          <h6 style="font-weight: bold; color: #333; margin-bottom: 8px;">Feature Table</h6>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-feature_table_file-label" for="fmsea-feature_table_file"></label>
+                            <div class="input-group">
+                              <label class="input-group-btn input-group-prepend">
+                                <span class="btn btn-default btn-file">
+                                  Browse...
+                                  <input id="fmsea-feature_table_file" class="shiny-input-file" name="fmsea-feature_table_file" type="file" style="position: absolute !important; top: -99999px !important; left: -99999px !important;" accept=".csv,.rda,.RData"/>
+                                </span>
+                              </label>
+                              <input type="text" class="form-control" placeholder="Select Feature Table (CSV/RDA)" readonly="readonly"/>
+                            </div>
+                            <div id="fmsea-feature_table_file_progress" class="progress active shiny-file-input-progress">
+                              <div class="progress-bar"></div>
+                            </div>
+                          </div>
+                          <div style="font-size: 0.75em; color: #666; margin-top: 5px; margin-bottom: 10px; padding: 5px; background-color: #f8f9fa; border-radius: 3px;">
+                            <div id="fmsea-feature_table_path" class="shiny-text-output"></div>
+                          </div>
+                          <div style="margin-bottom: 10px;">
+                            <p style="font-size: 0.85em; font-weight: bold; margin-bottom: 6px; color: #6c757d;">Or use demo data:</p>
+                            <div style="display: flex; gap: 5px; flex-wrap: wrap; align-items: center;">
+                              <button class="btn btn-default action-button btn-info btn-sm" id="fmsea-load_demo_data" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;" type="button"><span class="action-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-database " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313ZM13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 5.698ZM14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13V4Zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 8.698Zm0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525Z"></path></svg> Load Demo Data</span></button>
+                              <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-outline-secondary btn-sm" download href="" id="fmsea-download_demo_csv" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;" tabindex="-1" target="_blank">
+                                <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                                CSV
+                              </a>
+                              <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-outline-secondary btn-sm" download href="" id="fmsea-download_demo_rda" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;" tabindex="-1" target="_blank">
+                                <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                                RDA
+                              </a>
+                            </div>
+                          </div>
+                          <h6 style="font-weight: bold; color: #333; margin-bottom: 8px;">MS1 Database</h6>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-ms1_database-label" for="fmsea-ms1_database"></label>
+                            <div>
+                              <select id="fmsea-ms1_database" class="shiny-input-select"><option value="kegg_compound_ms1" selected>KEGG MS1 Database</option>
+<option value="hmdb_compound_ms1">HMDB MS1 Database</option></select>
+                              <script type="application/json" data-for="fmsea-ms1_database" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                            </div>
+                          </div>
+                          <h6 style="font-weight: bold; color: #333; margin-bottom: 8px;">Pathway Database</h6>
+                          <div id="fmsea-pathway_database_ui" class="shiny-html-output"></div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin: 14px 0;">
+                          <hr style="flex: 1; margin: 0; border-color: #dee2e6;"/>
+                          <span style="font-size: 0.8em; font-weight: 700; color: #adb5bd; white-space: nowrap;">OR</span>
+                          <hr style="flex: 1; margin: 0; border-color: #dee2e6;"/>
+                        </div>
+                        <div style="border-left: 3px solid #3498DB; padding-left: 10px; margin-bottom: 12px;">
+                          <p style="font-weight: 700; color: #3498DB; margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.04em;">Option B: Load Existing Result</p>
+                          <div class="form-group shiny-input-container" style="width:100%;">
+                            <label class="control-label" id="fmsea-results_rda_file-label" for="fmsea-results_rda_file">Load Result (RDA)</label>
+                            <div class="input-group">
+                              <label class="input-group-btn input-group-prepend">
+                                <span class="btn btn-default btn-file">
+                                  Browse...
+                                  <input id="fmsea-results_rda_file" class="shiny-input-file" name="fmsea-results_rda_file" type="file" style="position: absolute !important; top: -99999px !important; left: -99999px !important;" accept=".rda,.RData"/>
+                                </span>
+                              </label>
+                              <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
+                            </div>
+                            <div id="fmsea-results_rda_file_progress" class="progress active shiny-file-input-progress">
+                              <div class="progress-bar"></div>
+                            </div>
+                          </div>
+                          <div style="margin-bottom: 10px;">
+                            <p style="font-size: 0.85em; font-weight: bold; margin-bottom: 6px; color: #6c757d;">Or use demo result:</p>
+                            <button class="btn btn-default action-button btn-info btn-sm" id="fmsea-load_demo_result" style="font-size: 0.8rem; padding: 0.3rem 0.6rem;" type="button"><span class="action-label"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-clipboard-data " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"></path>
+<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path>
+<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path></svg> Load Demo Result</span></button>
+                          </div>
+                          <div style="font-size: 0.75em; color: #666; margin-bottom: 6px; padding: 5px; background-color: #f8f9fa; border-radius: 3px;">
+                            <div id="fmsea-results_rda_path" class="shiny-text-output"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-value="Step 1: Annotation and Filtering">
+                    <div class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-6007" aria-expanded="false" aria-controls="bslib-accordion-panel-6007">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-1-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383h1.312Z"></path></svg></div>
+                        <div class="accordion-title">Step 1: Annotation and Filtering</div>
+                      </button>
+                    </div>
+                    <div id="bslib-accordion-panel-6007" class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-column-label" for="fmsea-column">Chromatographic Column</label>
+                          <div>
+                            <select id="fmsea-column" class="shiny-input-select"><option value="rp" selected>Reverse Phase (RP)</option>
+<option value="hilic">Hydrophilic Interaction (HILIC)</option></select>
+                            <script type="application/json" data-for="fmsea-column" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                          </div>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-ms1_match_ppm-label" for="fmsea-ms1_match_ppm">MS1 Mass Tolerance (PPM)</label>
+                          <input id="fmsea-ms1_match_ppm" type="number" class="shiny-input-number form-control" value="15" data-update-on="change"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-mfc_rt_tol-label" for="fmsea-mfc_rt_tol">Retention Time Tolerance (seconds)</label>
+                          <input id="fmsea-mfc_rt_tol" type="number" class="shiny-input-number form-control" value="10" data-update-on="change"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-isotope_number-label" for="fmsea-isotope_number">Maximum Isotope Number</label>
+                          <input id="fmsea-isotope_number" type="number" class="shiny-input-number form-control" value="3" data-update-on="change"/>
+                        </div>
+                        <button class="btn btn-default action-button btn-primary" id="fmsea-run_step1" style="width: 100%;" type="button"><span class="action-label">Run Step 1</span></button>
+                        <div style="margin-top: 10px;">
+                          <div id="fmsea-step1_status" class="shiny-html-output"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-value="Step 2: featureMSEA Analysis">
+                    <div class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-5019" aria-expanded="false" aria-controls="bslib-accordion-panel-5019">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-2-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306Z"></path></svg></div>
+                        <div class="accordion-title">Step 2: featureMSEA Analysis</div>
+                      </button>
+                    </div>
+                    <div id="bslib-accordion-panel-5019" class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-threads-label" for="fmsea-threads">Number of Threads</label>
+                          <input id="fmsea-threads" type="number" class="shiny-input-number form-control" value="3" data-update-on="change" min="1"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-min_compounds-label" for="fmsea-min_compounds">Min Compounds per Pathway</label>
+                          <input id="fmsea-min_compounds" type="number" class="shiny-input-number form-control" value="15" data-update-on="change"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-max_compounds-label" for="fmsea-max_compounds">Max Compounds per Pathway</label>
+                          <input id="fmsea-max_compounds" type="number" class="shiny-input-number form-control" value="300" data-update-on="change"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-perm_num-label" for="fmsea-perm_num">Number of Permutations</label>
+                          <input id="fmsea-perm_num" type="number" class="shiny-input-number form-control" value="1000" data-update-on="change"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-max_iter_num-label" for="fmsea-max_iter_num">Maximum Iterations</label>
+                          <input id="fmsea-max_iter_num" type="number" class="shiny-input-number form-control" value="3" data-update-on="change" min="1" max="20"/>
+                        </div>
+                        <div class="form-group shiny-input-container">
+                          <label class="control-label" id="fmsea-fdr_thr-label" for="fmsea-fdr_thr">FDR Threshold</label>
+                          <input id="fmsea-fdr_thr" type="number" class="shiny-input-number form-control" value="0.05" data-update-on="change"/>
+                        </div>
+                        <button class="btn btn-default action-button btn-primary" id="fmsea-run_step2" style="width: 100%;" type="button"><span class="action-label">Run Step 2</span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-value="Step 3: LLM-Assisted Interpretation (Optional)">
+                    <div class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-3834" aria-expanded="false" aria-controls="bslib-accordion-panel-3834">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-3-circle " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M7.918 8.414h-.879V7.342h.838c.78 0 1.348-.522 1.342-1.237 0-.709-.563-1.195-1.348-1.195-.79 0-1.312.498-1.348 1.055H5.275c.036-1.137.95-2.115 2.625-2.121 1.594-.012 2.608.885 2.637 2.062.023 1.137-.885 1.776-1.482 1.875v.07c.703.07 1.71.64 1.734 1.917.024 1.459-1.277 2.396-2.93 2.396-1.705 0-2.707-.967-2.754-2.144H6.33c.059.597.68 1.06 1.541 1.066.973.006 1.6-.563 1.588-1.354-.006-.779-.621-1.318-1.541-1.318Z"></path>
+<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Z"></path></svg></div>
+                        <div class="accordion-title">Step 3: LLM-Assisted Interpretation (Optional)</div>
+                      </button>
+                    </div>
+                    <div id="bslib-accordion-panel-3834" class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        <div style="margin-bottom: 15px;">
+                          <h6 style="color: #0066cc; margin-bottom: 8px;">Matrix Confidence Assessment</h6>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-sample_source-label" for="fmsea-sample_source">Sample Source</label>
+                            <input id="fmsea-sample_source" type="text" class="shiny-input-text form-control" value="" placeholder="e.g., urine, plasma, serum, tissue" data-update-on="change"/>
+                          </div>
+                          <small style="color: #666; font-style: italic;">Analyze pathway reliability in specific sample matrix</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                          <h6 style="color: #0066cc; margin-bottom: 8px;">Topic Relevance Assessment</h6>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-research_topic-label" for="fmsea-research_topic">Research Topic</label>
+                            <input id="fmsea-research_topic" type="text" class="shiny-input-text form-control" value="" placeholder="e.g., cancer, diabetes, metabolism, aging" data-update-on="change"/>
+                          </div>
+                          <small style="color: #666; font-style: italic;">Analyze pathway relevance to research topic</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                          <h6 style="color: #0066cc; margin-bottom: 8px;">API Configuration</h6>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-api_provider-label" for="fmsea-api_provider">API Provider</label>
+                            <div>
+                              <select id="fmsea-api_provider" class="shiny-input-select"><option value="siliconflow" selected>siliconflow</option>
+<option value="openai">openai</option></select>
+                              <script type="application/json" data-for="fmsea-api_provider" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+                            </div>
+                          </div>
+                          <div class="form-group shiny-input-container">
+                            <label class="control-label" id="fmsea-api_key-label" for="fmsea-api_key">API Key</label>
+                            <input id="fmsea-api_key" type="password" class="shiny-input-password form-control" value="" placeholder="Enter your API key" data-update-on="change"/>
+                          </div>
+                          <div id="fmsea-trial_key_ui" class="shiny-html-output"></div>
+                          <small style="color: #666; font-style: italic;">Your API key will be used securely and not stored</small>
+                          <br/>
+                          <br/>
+                          <div id="fmsea-model_selection_ui" class="shiny-html-output"></div>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                          <div class="form-group shiny-input-container">
+                            <div class="checkbox">
+                              <label>
+                                <input id="fmsea-run_matrix_analysis" type="checkbox" class="shiny-input-checkbox" checked="checked"/>
+                                <span>Run Matrix Confidence Assessment</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="form-group shiny-input-container">
+                            <div class="checkbox">
+                              <label>
+                                <input id="fmsea-run_literature_analysis" type="checkbox" class="shiny-input-checkbox" checked="checked"/>
+                                <span>Run Topic Relevance Assessment</span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn-default action-button btn-primary" id="fmsea-run_step3" style="width: 100%;" type="button"><span class="action-label">Run LLM-Assisted Interpretation</span></button>
+                        <div style="margin-top: 10px;">
+                          <div id="fmsea-step3_status" class="shiny-html-output"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item" data-value="Save Results">
+                    <div class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-3103" aria-expanded="false" aria-controls="bslib-accordion-panel-3103">
+                        <div class="accordion-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-download " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path></svg></div>
+                        <div class="accordion-title">Save Results</div>
+                      </button>
+                    </div>
+                    <div id="bslib-accordion-panel-3103" class="accordion-collapse collapse">
+                      <div class="accordion-body">
+                        <div style="font-size: 0.75em; color: #666; margin-bottom: 10px; padding: 5px; background-color: #e8f5e8; border-radius: 3px;">
+                          <div id="fmsea-current_results_status" class="shiny-text-output"></div>
+                        </div>
+                        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                          <a aria-disabled="true" class="btn btn-default shiny-download-link disabled btn-success" download href="" id="fmsea-download_current_results" style="font-size: 0.875rem; padding: 0.375rem 0.75rem; width: 140px;" tabindex="-1" target="_blank">
+                            <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                            Save Result
+                          </a>
+                          <a id="fmsea-download_all_data" class="btn btn-default shiny-download-link disabled" href="" target="_blank" download aria-disabled="true" tabindex="-1" style="background-color: #ff8c42; border-color: #ff8c42; color: white; font-size: 0.875rem; padding: 0.375rem 0.75rem; width: 140px;">
+                            <i class="fas fa-download" role="presentation" aria-label="download icon"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-archive " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"></path></svg> Save All Data
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+            <button class="collapse-toggle" type="button" title="Toggle sidebar" aria-expanded="true" aria-controls="bslib-sidebar-7763"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-chevron-left collapse-icon" style="height:;width:;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path></svg></button>
+            <script data-bslib-sidebar-init>bslib.Sidebar.initCollapsibleAll()</script>
+          </div>
+        </div>
+        <div class="tab-pane html-fill-item html-fill-container bslib-gap-spacing" data-value="Authors" id="tab-6655-3" style="--bslib-navbar-margin:0;">
+          <style>
+        .author-card {
+          border: none;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+          transition: transform 0.2s, box-shadow 0.2s;
+          background: #fff;
+        }
+        .author-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(44,62,80,0.16);
+        }
+        .author-card .card-top-bar {
+          height: 6px;
+          border-radius: 12px 12px 0 0;
+          background: linear-gradient(90deg, #18BC9C, #3498DB);
+        }
+        .contact-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 18px;
+          border-radius: 10px;
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+        }
+        .contact-icon {
+          font-size: 1.4rem;
+          color: #18BC9C;
+          flex-shrink: 0;
+        }
+      </style>
+          <div class="container-fluid" style="padding: 30px 40px;">
+            <div style="background: linear-gradient(135deg, #2C3E50 0%, #18BC9C 100%);&#10;                   border-radius: 14px; padding: 36px 40px; margin-bottom: 32px; color: white;">
+              <h2 style="margin: 0 0 10px 0; font-weight: 700;">Development Team</h2>
+              <p style="margin: 0; opacity: 0.88; font-size: 1.05rem;">FeatureMSEA was developed by a multidisciplinary team combining analytical metabolomics and computational biology.</p>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-md-3 d-flex">
+                <div class="author-card h-100 w-100">
+                  <div class="card-top-bar"></div>
+                  <div class="card-body text-center p-5">
+                    <img src="www/yijiang.png" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover;&#10;                           margin-bottom: 16px; border: 4px solid #18BC9C;"/>
+                    <h4 style="color: #2C3E50; font-weight: 700; margin-bottom: 6px;">Yijiang Liu</h4>
+                    <span style="display: inline-block; background: #e8f8f5; color: #18BC9C;&#10;                           font-size: 0.88rem; font-weight: 600; padding: 3px 14px;&#10;                           border-radius: 20px; margin-bottom: 12px;">PhD Student</span>
+                    <p style="font-size: 0.92rem; color: #6c757d; margin-bottom: 0;">
+                      School of Chemistry, Chemical Engineering and Biotechnology,
+                      <br/>
+                      Nanyang Technological University
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex">
+                <div class="author-card h-100 w-100">
+                  <div class="card-top-bar"></div>
+                  <div class="card-body text-center p-5">
+                    <img src="www/yuting.png" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover;&#10;                           margin-bottom: 16px; border: 4px solid #18BC9C;"/>
+                    <h4 style="color: #2C3E50; font-weight: 700; margin-bottom: 6px;">Yuting Wang</h4>
+                    <span style="display: inline-block; background: #e8f8f5; color: #18BC9C;&#10;                           font-size: 0.88rem; font-weight: 600; padding: 3px 14px;&#10;                           border-radius: 20px; margin-bottom: 12px;">PhD Student</span>
+                    <p style="font-size: 0.92rem; color: #6c757d; margin-bottom: 0;">
+                      Lee Kong Chian School of Medicine,
+                      <br/>
+                      Nanyang Technological University
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex">
+                <div class="author-card h-100 w-100">
+                  <div class="card-top-bar"></div>
+                  <div class="card-body text-center p-5">
+                    <img src="www/huantao.png" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover;&#10;                           margin-bottom: 16px; border: 4px solid #3498DB;"/>
+                    <h4 style="color: #2C3E50; font-weight: 700; margin-bottom: 6px;">Dr. Tao Huan</h4>
+                    <span style="display: inline-block; background: #eaf4fb; color: #3498DB;&#10;                           font-size: 0.88rem; font-weight: 600; padding: 3px 14px;&#10;                           border-radius: 20px; margin-bottom: 12px;">Associate Professor</span>
+                    <p style="font-size: 0.92rem; color: #6c757d; margin-bottom: 0;">
+                      Department of Chemistry,
+                      <br/>
+                      University of British Columbia
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 d-flex">
+                <div class="author-card h-100 w-100">
+                  <div class="card-top-bar"></div>
+                  <div class="card-body text-center p-5">
+                    <img src="www/xiaotao.png" style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover;&#10;                           margin-bottom: 16px; border: 4px solid #3498DB;"/>
+                    <h4 style="color: #2C3E50; font-weight: 700; margin-bottom: 6px;">Dr. Xiaotao Shen</h4>
+                    <span style="display: inline-block; background: #eaf4fb; color: #3498DB;&#10;                           font-size: 0.88rem; font-weight: 600; padding: 3px 14px;&#10;                           border-radius: 20px; margin-bottom: 12px;">Assistant Professor</span>
+                    <p style="font-size: 0.92rem; color: #6c757d; margin-bottom: 0;">
+                      Lee Kong Chian School of Medicine,
+                      <br/>
+                      Nanyang Technological University
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h4 style="color: #2C3E50; font-weight: 700; margin-bottom: 16px;">Contact &amp; Support</h4>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="contact-item">
+                  <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-github " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg></div>
+                  <div>
+                    <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;">GitHub</div>
+                    <a href="https://github.com/tidymass/featuremsea_shiny" target="_blank" style="font-size: 0.9rem;">featuremsea_shiny</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="contact-item">
+                  <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-globe " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"></path></svg></div>
+                  <div>
+                    <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;">Shen-lab Website</div>
+                    <a href="https://www.shen-lab.org/" target="_blank" style="font-size: 0.9rem;">www.shen-lab.org</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="contact-item">
+                  <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-envelope " style="height:1em;width:1em;fill:currentColor;vertical-align:-0.125em;" aria-hidden="true" role="img" ><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path></svg></div>
+                  <div>
+                    <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;">Email</div>
+                    <a href="/cdn-cgi/l/email-protection#8ef6e7efe1faefe1a0fde6ebe0cee0fafba0ebeafba0fde9" style="font-size: 0.9rem;"><span class="__cf_email__" data-cfemail="d3abbab2bca7b2bcfda0bbb6bd93bda7a6fdb6b7a6fda0b4">[email&#160;protected]</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</body>
+</html>

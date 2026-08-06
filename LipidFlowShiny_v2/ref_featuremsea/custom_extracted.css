@@ -1,0 +1,61 @@
+/* ---- inline <style> block 1 ---- */
+html { height: 100%; }
+
+/* ---- inline <style> block 2 ---- */
+.navbar { align-items: center; }
+        .navbar-nav { align-self: center; }
+        .navbar-nav .nav-link { display: flex; align-items: center; height: 100%; }
+
+/* ---- inline <style> block 3 ---- */
+.intro-step-card {
+          border: none;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(44,62,80,0.09);
+          height: 100%;
+        }
+        .intro-step-card .step-number {
+          width: 40px; height: 40px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 1.1rem; font-weight: 700; color: white;
+          margin: 0 auto 14px auto;
+        }
+        .highlight-box {
+          border-left: 4px solid #18BC9C;
+          background: #f4fdf9;
+          border-radius: 0 8px 8px 0;
+          padding: 14px 18px;
+        }
+
+/* ---- inline <style> block 4 ---- */
+.author-card {
+          border: none;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(44,62,80,0.10);
+          transition: transform 0.2s, box-shadow 0.2s;
+          background: #fff;
+        }
+        .author-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(44,62,80,0.16);
+        }
+        .author-card .card-top-bar {
+          height: 6px;
+          border-radius: 12px 12px 0 0;
+          background: linear-gradient(90deg, #18BC9C, #3498DB);
+        }
+        .contact-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 18px;
+          border-radius: 10px;
+          background: #f8f9fa;
+          border: 1px solid #e9ecef;
+        }
+        .contact-icon {
+          font-size: 1.4rem;
+          color: #18BC9C;
+          flex-shrink: 0;
+        }
+
